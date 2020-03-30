@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html >
+
+<head>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  
+
+<meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
+<style>
+  body  {background-color: rgb(37, 37, 37);}
+  h1    {color: rgb(209, 209, 209)}
+  p     {color: rgb(209, 209, 209)}
+  h3    {color: rgb(209, 209, 209)}
+
+</style>
+
+</head>
+
+<body>
+ <div class="login">
+	<h1>Molecular Weight Calculator</h1>
+  
+     <!-- Main Input For Receiving Query to ML Model -->
+     <div class="row">
+       <div class = "col-md-6">
+
+      <form action="{{ url_for('predict')}}"method="post">
+        <input type="text" name="SG" placeholder="Specific Gravity" required="required" />
+        <br>
+        <input type="text" name="P" placeholder="Pressure (PSIG)" required="required" />
+        <br>
+      <input type="text" name="T" placeholder="Temperature (F)" required="required" />
+      <br>
+      <input type="text" name="C1" placeholder="Methane (LV%)" required="required" />
+      <br>
+      <input type="text" name="C2" placeholder="Ethane (LV%)" required="required" />
+      <br>
+      <input type="text" name="C3" placeholder="Propane (LV%)" required="required" />
+      <br>
+      <input type="text" name="iC4" placeholder="Isobutane (LV%)" required="required" />
+      <br>
+      <input type="text" name="C4" placeholder="n-Butane (LV%)" required="required" />
+      <br>
+      <input type="text" name="iC5" placeholder="Isopentane (LV%)" required="required" />
+      <br>
+      <input type="text" name="C5" placeholder="n-Pentane (LV%)" required="required" />
+      <br>
+      <input type="text" name="C6" placeholder="Hexanes (LV%)" required="required" />
+      <br>
+      <input type="text" name="C7" placeholder="Heptanes Plus (LV%)" required="required" />
+      <br>
+      <input type="text" name="CO2" placeholder="Carbon Dioxide (LV%)" required="required" />
+      <br>
+      <input type="text" name="N2" placeholder="Nitrogen (LV%)" required="required" />
+      <br>
+
+          <button type="submit" class="btn btn-primary">Calculate</button>
+        </form>
+ 
+ 
+      </div>
+      <div class = "col-md-6">
+      <!-- insert picture-->
+      <img src=https://spl-inc.com/wp-content/uploads/2019/12/SPL_logo.svg>
+      </div>
+
+    <br>
+     <h3>
+        {{ prediction_text }}
+     </h3>
+  <br>
+ </div>
+
+ <p class = "lead">
+   Description: This Model uses an ensemble of several machine learning methods including XGboost, 
+   Support Vector Regression, Random Forest Regression, and more to accuratly model the molecular weight of a sample. 
+ </p>
+
+</body>
+</html>
