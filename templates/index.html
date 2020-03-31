@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html >
+<html>
 
 <head>
 
@@ -16,69 +16,75 @@
 <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 
 <style>
-  body  {background-color: rgb(37, 37, 37);}
+  body    {background-color: rgb(37, 37, 37);}
+  h2      {color: rgb(209, 209, 209)}
+  p       {color: rgb(209, 209, 209)}
+  title   {color: rgb(209, 209, 209)}
+  button  {color: rgb(47, 155, 255)}
+  body  {background-color: rgb(72, 73, 75);}
+  body  {color: rgb(209, 209, 209);}
   h1    {color: rgb(209, 209, 209)}
-  p     {color: rgb(209, 209, 209)}
   h3    {color: rgb(209, 209, 209)}
+  form  {color: rgb(209, 209, 209)}
+  nav   {background-color:  rgb(87, 87, 87);}
+  nav   {color:  rgb(112, 112, 112);}
 
 </style>
-
 </head>
 
-<body>
- <div class="login">
-	<h1>Molecular Weight Calculator</h1>
+
+<div class="bs-example">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <a href="https://spl-inc.com/" class="navbar-brand">
+          <img src="https://spl-inc.com/wp-content/uploads/2019/12/SPL_logo.svg" height="28" alt="Brand">
+      </a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+      </button>
   
-     <!-- Main Input For Receiving Query to ML Model -->
-     <div class="row">
-       <div class = "col-md-6">
-
-      <form action="{{ url_for('predict')}}"method="post">
-        <input type="text" name="SG" placeholder="Specific Gravity" required="required" />
-        <br>
-        <input type="text" name="P" placeholder="Pressure (PSIG)" required="required" />
-        <br>
-      <input type="text" name="T" placeholder="Temperature (F)" required="required" />
-      <br>
-      <input type="text" name="C1" placeholder="Methane (LV%)" required="required" />
-      <br>
-      <input type="text" name="C2" placeholder="Ethane (LV%)" required="required" />
-      <br>
-      <input type="text" name="C3" placeholder="Propane (LV%)" required="required" />
-      <br>
-      <input type="text" name="iC4" placeholder="Isobutane (LV%)" required="required" />
-      <br>
-      <input type="text" name="C4" placeholder="n-Butane (LV%)" required="required" />
-      <br>
-      <input type="text" name="iC5" placeholder="Isopentane (LV%)" required="required" />
-      <br>
-      <input type="text" name="C5" placeholder="n-Pentane (LV%)" required="required" />
-      <br>
-      <input type="text" name="C6" placeholder="Hexanes (LV%)" required="required" />
-      <br>
-      <input type="text" name="C7" placeholder="Heptanes Plus (LV%)" required="required" />
-      <br>
-      <input type="text" name="CO2" placeholder="Carbon Dioxide (LV%)" required="required" />
-      <br>
-      <input type="text" name="N2" placeholder="Nitrogen (LV%)" required="required" />
-      <br>
-
-          <button type="submit" class="btn btn-primary">Calculate</button>
-        </form>
- 
- 
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav">
+              <a href="#" class="nav-item nav-link active">home</a>
+              <a href="#" class="nav-item nav-link active">Predict</a>
+          </div>
       </div>
-      <div class = "col-md-6">
-      <!-- insert picture-->
-      <img src=https://spl-inc.com/wp-content/uploads/2019/12/SPL_logo.svg>
+  </nav>
+  </div>
+  
+  <br>
+  
+  <div class="col-md-12">
+      <div class="text-center">
+          <h1>
+              Molecular Weight Calculator
+          </h1>
       </div>
+  </div>
+
+
+
+<body>
+  <div class = "container">
+    <h2>Input:</h2>
+    <br>
+    <form method=POST action="/predict" enctype="multipart/form-data">
+      <div class = "form-group">
+     <label for="inputFile"> File Input </label>
+        <input type = "file" name = "inputFile">
+      </div>
+      <button type="submit" class="btn btn-primary">Calculate</button>
+ </form>
+</div>
+
+<br>
 
     <br>
      <h3>
-        {{ prediction_text }}
+      {{ table1 | safe }}
      </h3>
   <br>
  </div>
+
 
  <p class = "lead">
    Description: This Model uses an ensemble of several machine learning methods including XGboost, 
